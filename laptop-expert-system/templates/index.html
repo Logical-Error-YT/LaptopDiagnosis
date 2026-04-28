@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Laptop Expert System</title>
+    <style>
+        body {
+            background: #0d0d0d;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .symptoms {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        label {
+            background: rgba(255,255,255,0.08);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        label:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(0,255,150,0.1);
+        }
+
+        .issue {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ffcc;
+        }
+
+        .confidence {
+            color: #ffcc00;
+        }
+
+        hr {
+            border: 0.5px solid rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>💻 Laptop Troubleshooting Expert System</h1>
+
+    <form method="POST">
+        <div class="symptoms">
+            {% for symptom in symptoms %}
+                <label>
+                    <input type="checkbox" name="symptoms" value="{{ symptom }}">
+                    {{ symptom }}
+                </label>
+            {% endfor %}
+        </div>
+
+        <button type="submit">Diagnose</button>
+    </form>
+
+    {% if results %}
+        <h2>🔍 Results</h2>
+
+        {% for r in results %}
+            <div class="result">
+                <div class="issue">Issue: {{ r.issue }}</div>
+                <p><b>Matched:</b> {{ r.matched }}</p>
+                <p class="confidence"><b>Confidence:</b> {{ r.confidence }}%</p>
+                <p><b>Solution:</b> {{ r.solution }}</p>
+            </div>
+            <hr>
+        {% endfor %}
+    {% endif %}
+</div>
+
+</body>
+</html>
