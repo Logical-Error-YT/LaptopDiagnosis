@@ -40,7 +40,6 @@ laptop-expert-system/
 ├── app.py
 ├── templates/
 │   └── index.html
-├── requirements.txt
 └── README.md
 ```
 
@@ -58,7 +57,7 @@ cd laptop-expert-system
 ### 2. Install dependencies
 
 ```
-pip install -r requirements.txt
+pip install flask python 
 ```
 
 ### 3. Run the application
